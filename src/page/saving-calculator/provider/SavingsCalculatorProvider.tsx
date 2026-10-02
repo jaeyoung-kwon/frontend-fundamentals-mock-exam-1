@@ -1,10 +1,7 @@
 import type { ReactNode } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
-import {
-  savingsCalculatorSchema,
-  SavingsCalculatorFormValues,
-} from '../pages/saving-calculator/schemas/savingsCalculatorSchema';
+import { savingsCalculatorSchema, SavingsCalculatorFormValues } from '../schema/savingsCalculatorSchema';
 
 export const SavingsCalculatorProvider = ({ children }: { children: ReactNode }) => {
   const methods = useForm<SavingsCalculatorFormValues>({

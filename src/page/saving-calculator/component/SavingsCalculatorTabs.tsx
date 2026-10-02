@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { ListRow, Tab } from 'tosslib';
 import { matchesSavingsConditions, type SavingsProduct } from '../../../savings';
-import type { SavingsCalculatorFormValues } from '../schemas/savingsCalculatorSchema';
-import { CalculationResult } from '../../../components/CalculationResult';
-import { ProductList } from '../../../components/ProductList';
+import type { SavingsCalculatorFormValues } from '../schema/savingsCalculatorSchema';
+import { CalculationResult } from '../../../component/CalculationResult';
+import { ProductList } from '../../../component/ProductList';
 
 interface SavingsCalculatorTabsProps {
   isLoading: boolean;

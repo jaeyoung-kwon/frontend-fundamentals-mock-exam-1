@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getSavingsProducts } from '../../../apis/getSavingsProducts';
+import { getSavingsProducts } from '../../../api/getSavingsProducts';
 import type { SavingsProduct } from '../../../savings';
 
 export const useSavingsProducts = () => {

@@ -1,7 +1,7 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { SelectBottomSheet, Spacing, TextField } from 'tosslib';
 import { formatAmountInput } from '../../../savings';
-import type { SavingsCalculatorFormValues } from '../schemas/savingsCalculatorSchema';
+import type { SavingsCalculatorFormValues } from '../schema/savingsCalculatorSchema';
 
 interface SavingsCalculatorFormProps {
   availableTerms: number[];
