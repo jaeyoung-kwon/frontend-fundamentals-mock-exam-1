@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { formatAmountInput } from '../savings';
+import { formatAmountInput } from '../../../savings';
 
 const amountSchema = z.string().refine(value => formatAmountInput(value) !== null, {
   message: '금액은 0 이상의 정수로 입력해주세요.',

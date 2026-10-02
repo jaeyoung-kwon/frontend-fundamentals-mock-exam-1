@@ -1,7 +1,7 @@
-import { SavingsCalculatorForm } from 'components/SavingsCalculatorForm';
-import { SavingsCalculatorTabs } from 'components/SavingsCalculatorTabs';
+import { SavingsCalculatorForm } from 'pages/saving-calculator/components/SavingsCalculatorForm';
+import { SavingsCalculatorTabs } from 'pages/saving-calculator/components/SavingsCalculatorTabs';
 import { SavingsCalculatorProvider } from 'components/SavingsCalculatorProvider';
-import { useSavingsProducts } from 'hooks/useSavingsProducts';
+import { useSavingsProducts } from 'pages/saving-calculator/hooks/useSavingsProducts';
 import { Border, NavigationBar, Spacing } from 'tosslib';
 
 export const SavingsCalculatorPage = () => {
