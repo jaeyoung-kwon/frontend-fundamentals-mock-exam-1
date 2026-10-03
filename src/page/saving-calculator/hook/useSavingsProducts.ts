@@ -6,6 +6,13 @@ export const useSavingsProducts = () => {
   const [products, setProducts] = useState<SavingsProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [requestVersion, setRequestVersion] = useState(0);
+
+  const refetch = () => {
+    setIsLoading(true);
+    setError(null);
+    setRequestVersion(version => version + 1);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -31,7 +38,7 @@ export const useSavingsProducts = () => {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [requestVersion]);
 
-  return { products, isLoading, error };
+  return { products, isLoading, error, refetch };
 };

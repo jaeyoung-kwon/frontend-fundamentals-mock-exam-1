@@ -1,26 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { ListRow } from 'tosslib';
+import { Button } from 'tosslib';
+import { LoadingSpinner } from '../../../component/LoadingSpinner';
 import type { SavingsCalculatorTab } from '../type/tab';
 import { SAVINGS_CALCULATOR_FIELD } from '../constant/formFields';
 import { matchesSavingsConditions, type SavingsProduct } from '../../../savings';
 import type { SavingsCalculatorFormValues } from '../schema/savingsCalculatorSchema';
 import { CalculationResult } from '../../../component/CalculationResult';
 import { ProductList } from '../../../component/ProductList';
+import { containerStyle, errorTextStyle, statusContainerStyle } from './SavingsCalculatorTabContent.css';
 
 interface SavingsCalculatorTabContentProps {
   activeTab: SavingsCalculatorTab;
-  isLoading: boolean;
-  error: string | null;
   products: SavingsProduct[];
 }
 
-export const SavingsCalculatorTabContent = ({
-  activeTab,
-  isLoading,
-  error,
-  products,
-}: SavingsCalculatorTabContentProps) => {
+export const SavingsCalculatorTabContent = ({ activeTab, products }: SavingsCalculatorTabContentProps) => {
   const { control } = useFormContext<SavingsCalculatorFormValues>();
   const [targetAmount, monthlyAmount, term] = useWatch({
     control,
@@ -44,28 +39,50 @@ export const SavingsCalculatorTabContent = ({
     }
   }, [products, selectedProductId, monthlyAmountValue, term]);
 
-  if (isLoading) {
-    return <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품 목록을 불러오는 중이에요." />} />;
-  }
-
-  if (error) {
-    return <ListRow contents={<ListRow.Texts type="1RowTypeA" top={error} />} />;
-  }
-
-  if (activeTab === 'products') {
-    return (
-      <ProductList products={filteredProducts} selectedProductId={selectedProductId} onSelect={setSelectedProductId} />
-    );
-  }
-
   return (
-    <CalculationResult
-      selectedProduct={selectedProduct}
-      targetAmount={targetAmount === '' ? null : Number(targetAmount.replace(/,/g, ''))}
-      monthlyAmount={monthlyAmountValue}
-      term={term}
-      recommendedProducts={recommendedProducts}
-      onSelect={setSelectedProductId}
-    />
+    <div css={containerStyle}>
+      {activeTab === 'products' ? (
+        <ProductList
+          products={filteredProducts}
+          selectedProductId={selectedProductId}
+          onSelect={setSelectedProductId}
+        />
+      ) : (
+        <CalculationResult
+          selectedProduct={selectedProduct}
+          targetAmount={targetAmount === '' ? null : Number(targetAmount.replace(/,/g, ''))}
+          monthlyAmount={monthlyAmountValue}
+          term={term}
+          recommendedProducts={recommendedProducts}
+          onSelect={setSelectedProductId}
+        />
+      )}
+    </div>
+  );
+};
+
+SavingsCalculatorTabContent.Loading = () => {
+  return (
+    <div css={statusContainerStyle}>
+      <LoadingSpinner />
+    </div>
+  );
+};
+
+interface SavingsCalculatorTabContentErrorProps {
+  error: string;
+  onRetry: () => void;
+}
+
+SavingsCalculatorTabContent.Error = ({ error, onRetry }: SavingsCalculatorTabContentErrorProps) => {
+  return (
+    <div css={statusContainerStyle}>
+      <p role="alert" css={errorTextStyle}>
+        {error}
+      </p>
+      <Button type="button" onClick={onRetry}>
+        새로고침
+      </Button>
+    </div>
   );
 };
