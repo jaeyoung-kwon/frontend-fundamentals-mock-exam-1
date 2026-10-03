@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { ListRow, Tab } from 'tosslib';
+import { SAVINGS_CALCULATOR_FIELD } from '../constant/formFields';
 import { matchesSavingsConditions, type SavingsProduct } from '../../../savings';
 import type { SavingsCalculatorFormValues } from '../schema/savingsCalculatorSchema';
 import { CalculationResult } from '../../../component/CalculationResult';
@@ -16,7 +17,11 @@ export const SavingsCalculatorTabs = ({ isLoading, error, products }: SavingsCal
   const { control } = useFormContext<SavingsCalculatorFormValues>();
   const [targetAmount, monthlyAmount, term] = useWatch({
     control,
-    name: ['targetAmount', 'monthlyAmount', 'term'],
+    name: [
+      SAVINGS_CALCULATOR_FIELD.TARGET_AMOUNT,
+      SAVINGS_CALCULATOR_FIELD.MONTHLY_AMOUNT,
+      SAVINGS_CALCULATOR_FIELD.TERM,
+    ],
   });
   const [activeTab, setActiveTab] = useState('products');
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
