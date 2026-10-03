@@ -1,5 +1,5 @@
 import { SavingsCalculatorForm } from 'page/saving-calculator/component/SavingsCalculatorForm';
-import { SavingsCalculatorTabs } from 'page/saving-calculator/component/SavingsCalculatorTabs';
+import { SavingsCalculatorResultSection } from 'page/saving-calculator/component/SavingsCalculatorResultSection';
 import { SavingsCalculatorProvider } from 'page/saving-calculator/provider/SavingsCalculatorProvider';
 import { useSavingsProducts } from 'page/saving-calculator/hook/useSavingsProducts';
 import { Border, NavigationBar, Spacing } from 'tosslib';
@@ -21,7 +21,7 @@ export const SavingsCalculatorPage = () => {
         <Border height={16} />
 
         <Spacing size={8} />
-        <SavingsCalculatorTabs products={products} isLoading={isLoading} error={error} />
+        <SavingsCalculatorResultSection products={products} isLoading={isLoading} error={error} />
         <Spacing size={40} />
       </SavingsCalculatorProvider>
     </>
