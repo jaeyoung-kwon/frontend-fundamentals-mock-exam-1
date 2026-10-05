@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { css } from '@emotion/react';
 import type { SavingsProduct } from '../../../savings';
-import type { SavingsCalculatorTab } from '../type/tab';
+import { useSavingsCalculatorTab } from '../hook/useSavingsCalculatorTab';
 import { SavingsCalculatorTabs } from './SavingsCalculatorTabs';
 import { SavingsCalculatorTabContent } from './SavingsCalculatorTabContent';
 
@@ -18,7 +17,7 @@ export const SavingsCalculatorResultSection = ({
   error,
   onRetry,
 }: SavingsCalculatorResultSectionProps) => {
-  const [activeTab, setActiveTab] = useState<SavingsCalculatorTab>('products');
+  const { activeTab, onActiveTabChange } = useSavingsCalculatorTab();
 
   return (
     <section
@@ -28,7 +27,7 @@ export const SavingsCalculatorResultSection = ({
         flex: 1;
       `}
     >
-      <SavingsCalculatorTabs activeTab={activeTab} onChange={setActiveTab} />
+      <SavingsCalculatorTabs activeTab={activeTab} onChange={onActiveTabChange} />
       {isLoading ? (
         <SavingsCalculatorTabContent.Loading />
       ) : error ? (

@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { SelectBottomSheet, Spacing, TextField } from 'tosslib';
-import { formatAmountInput } from '../../../savings';
+import { formatAmount, isValidAmountInput } from '../../../util/amount';
 import { SAVINGS_CALCULATOR_FIELD } from '../constant/formFields';
 import type { SavingsCalculatorFormValues } from '../schema/savingsCalculatorSchema';
 
@@ -13,10 +13,12 @@ export const SavingsCalculatorForm = ({ availableTerms }: SavingsCalculatorFormP
   const { control } = useFormContext<SavingsCalculatorFormValues>();
 
   const handleAmountChange = (onChange: (value: string) => void) => (event: ChangeEvent<HTMLInputElement>) => {
-    const value = formatAmountInput(event.target.value);
-    if (value !== null) {
-      onChange(value);
+    const value = event.target.value.replace(/,/g, '');
+    if (!isValidAmountInput(value)) {
+      return;
     }
+
+    onChange(value === '' ? '' : formatAmount(Number(value)));
   };
 
   return (

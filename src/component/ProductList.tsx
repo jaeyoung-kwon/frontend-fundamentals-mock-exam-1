@@ -1,5 +1,6 @@
 import { Assets, colors, ListRow } from 'tosslib';
-import { formatAmount, SavingsProduct } from '../savings';
+import type { SavingsProduct } from '../savings';
+import { formatAmount } from '../util/amount';
 
 interface ProductListProps {
   products: SavingsProduct[];

@@ -1,5 +1,6 @@
 import { Border, colors, ListHeader, ListRow, Spacing } from 'tosslib';
-import { calculateSavings, formatAmount, SavingsProduct } from '../savings';
+import { calculateSavings, SavingsProduct } from '../savings';
+import { formatAmount } from '../util/amount';
 import { ProductList } from './ProductList';
 
 interface CalculationResultProps {

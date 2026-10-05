@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { formatAmountInput } from '../../../savings';
+import { isValidAmountInput } from '../../../util/amount';
 import { SAVINGS_CALCULATOR_FIELD } from '../constant/formFields';
 
-const amountSchema = z.string().refine(value => formatAmountInput(value) !== null, {
+const amountSchema = z.string().refine(isValidAmountInput, {
   message: '금액은 0 이상의 정수로 입력해주세요.',
 });
 
