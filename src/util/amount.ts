@@ -2,6 +2,15 @@ export const formatAmount = (amount: number) => {
   return amount.toLocaleString('ko-KR', { maximumFractionDigits: 0 });
 };
 
+export const parseAmount = (value: string): number | null => {
+  // 입력하지 않은 금액은 0원과 구분해요.
+  if (value === '') {
+    return null;
+  }
+
+  return Number(value.replace(/,/g, ''));
+};
+
 // 빈 입력과 쉼표가 포함된 0 이상의 안전한 정수를 허용해요.
 export const isValidAmountInput = (value: string): boolean => {
   const digits = value.replace(/,/g, '');

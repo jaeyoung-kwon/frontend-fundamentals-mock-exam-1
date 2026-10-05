@@ -1,5 +1,5 @@
 import { http, isHttpError } from 'tosslib';
-import type { SavingsProduct } from '../savings';
+import type { SavingsProduct } from './type/SavingsProduct';
 
 export const getSavingsProducts = async () => {
   try {

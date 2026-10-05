@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import type { SavingsProduct } from '../../../savings';
+import type { SavingsProduct } from '../../../api/type/SavingsProduct';
 import { useSavingsCalculatorTab } from '../hook/useSavingsCalculatorTab';
 import { SavingsCalculatorTabs } from './SavingsCalculatorTabs';
 import { SavingsCalculatorTabContent } from './SavingsCalculatorTabContent';

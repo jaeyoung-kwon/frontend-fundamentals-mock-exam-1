@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getSavingsProducts } from '../../../api/getSavingsProducts';
-import type { SavingsProduct } from '../../../savings';
+import type { SavingsProduct } from '../../../api/type/SavingsProduct';
 
-export const useSavingsProducts = () => {
+export const useSavingsProductData = () => {
   const [products, setProducts] = useState<SavingsProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
